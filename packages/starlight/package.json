@@ -4,7 +4,10 @@
   "description": "Build beautiful, high-performance documentation websites with Astro",
   "scripts": {
     "test": "vitest",
+    "test:functional": "UNIT_TESTS=false FUNCTIONAL_TESTS=true vitest",
+    "test:all": "FUNCTIONAL_TESTS=true vitest",
     "test:coverage": "vitest run --coverage",
+    "test:coverage:all": "E2E_TESTS=true vitest --run --coverage",
     "test:e2e": "playwright install --with-deps chromium && playwright test"
   },
   "keywords": [
@@ -172,7 +175,9 @@
       "default": "./integrations/expressive-code/hast.mjs"
     },
     "./index.astro": "./index.astro",
+    "./indexSSR.astro": "./indexSSR.astro",
     "./404.astro": "./404.astro",
+    "./404SSR.astro": "./404SSR.astro",
     "./style/markdown.css": "./style/markdown.css"
   },
   "peerDependencies": {
@@ -180,10 +185,12 @@
   },
   "devDependencies": {
     "@astrojs/markdown-remark": "^5.1.0",
+    "@astrojs/node": "^8.3.1",
     "@playwright/test": "^1.44.1",
     "@types/node": "^18.16.19",
     "@vitest/coverage-v8": "^1.6.0",
     "astro": "^4.10.2",
+    "cheerio": "^1.0.0-rc.12",
     "vitest": "^1.6.0"
   },
   "dependencies": {
